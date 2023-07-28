@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pojo.inter.accountMapper">
+    <select id="FindAll" resultType="pojo.accountTable">
+        select *
+        from account;
+    </select>
+    <delete id="deleteByPrimaryKey">
+        delete
+        from account
+        where id = #{id};
+    </delete>
+    <insert id="insert">
+        insert into account (id, name, money, createtime, updatetime)
+        values (#{id}, #{name}, #{money}, #{createtime}, #{updatetime});
+    </insert>
+    <select id="selectPrimaryKey" resultType="pojo.accountTable">
+        select *
+        from account
+        where id = #{id};
+    </select>
+    <update id="updateByPrimayKey">
+        update account
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="money != null and money != ''">
+                money = #{money},
+            </if>
+            <if test="createtime != null and createtime != ''">
+                createtime = #{createtime},
+            </if>
+            <if test="updatetime != null and updatetime != ''">
+                updatetime = #{updatetime},
+            </if>
+        </set>
+        where
+        id = #{id};
+    </update>
+</mapper>
